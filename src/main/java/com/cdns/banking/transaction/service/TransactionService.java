@@ -17,23 +17,23 @@ public interface TransactionService {
 	/**
 	 * balanceDebit
 	 * 
-	 * @param transaction {@link TransactionEntity}
-	 * @return {@link TransactionEntity}
+	 * @param transaction TransactionEntity
+	 * @return TransactionEntity
 	 */
 	public TransactionEntity balanceDebit(TransactionEntity transaction);
 
 	/**
 	 * balanceCredit
 	 * 
-	 * @param transaction {@link TransactionEntity}
-	 * @return {@link TransactionEntity}
+	 * @param transaction TransactionEntity
+	 * @return TransactionEntity
 	 */
 	public TransactionEntity balanceCredit(TransactionEntity transaction);
 
 	/**
 	 * performPayment
 	 * 
-	 * @param transaction {@link TransactionEntity}
+	 * @param transaction TransactionEntity
 	 * @return String[]
 	 * @throws JSONException
 	 * @throws JsonProcessingException
@@ -43,8 +43,8 @@ public interface TransactionService {
 	/**
 	 * getTransactionEntityByAccountID
 	 * 
-	 * @param transaction {@link String}
-	 * @return {@link List}
+	 * @param transaction String
+	 * @return List<TransactionEntity>
 	 */
 	public List<TransactionEntity> getTransactionEntityByAccountID(String accountID);
 }

@@ -63,7 +63,7 @@ public class TransactionEntity {
 	/**
 	 * getTransactionID
 	 * 
-	 * @return transactionID {@link String}
+	 * @return transactionID String
 	 */
 	public String getTransactionID() {
 		return transactionID;
@@ -72,7 +72,7 @@ public class TransactionEntity {
 	/**
 	 * setTransactionID
 	 * 
-	 * @param transactionID {@link String}
+	 * @param transactionID String
 	 */
 	public void setTransactionID(String transactionID) {
 		this.transactionID = transactionID;
@@ -81,7 +81,7 @@ public class TransactionEntity {
 	/**
 	 * getAccountID
 	 * 
-	 * @return accountID {@link String}
+	 * @return accountID String
 	 */
 	public String getAccountID() {
 		return accountID;
@@ -90,7 +90,7 @@ public class TransactionEntity {
 	/**
 	 * setAccountID
 	 * 
-	 * @param accountID {@link String}
+	 * @param accountID String
 	 */
 	public void setAccountID(String accountID) {
 		this.accountID = accountID;
@@ -99,7 +99,7 @@ public class TransactionEntity {
 	/**
 	 * getTransactionDate
 	 * 
-	 * @return transactionDate {@link String}
+	 * @return transactionDate String
 	 */
 	public String getTransactionDate() {
 		return transactionDate;
@@ -108,7 +108,7 @@ public class TransactionEntity {
 	/**
 	 * setTransactionDate
 	 * 
-	 * @param transactionDate {@link String}
+	 * @param transactionDate String
 	 */
 	public void setTransactionDate(String transactionDate) {
 		this.transactionDate = transactionDate;
@@ -117,7 +117,7 @@ public class TransactionEntity {
 	/**
 	 * getAmount
 	 * 
-	 * @return amount {@link String}
+	 * @return amount String
 	 */
 	public int getAmount() {
 		return amount;
@@ -126,7 +126,7 @@ public class TransactionEntity {
 	/**
 	 * setAmount
 	 * 
-	 * @param amount {@link String}
+	 * @param amount String
 	 */
 	public void setAmount(int amount) {
 		this.amount = amount;
@@ -135,7 +135,7 @@ public class TransactionEntity {
 	/**
 	 * getTransactionType
 	 * 
-	 * @return transactionType {@link String}
+	 * @return transactionType String
 	 */
 	public String getTransactionType() {
 		return transactionType;
@@ -144,7 +144,7 @@ public class TransactionEntity {
 	/**
 	 * setTransactionType
 	 * 
-	 * @param transactionType {@link String}
+	 * @param transactionType String
 	 */
 	public void setTransactionType(String transactionType) {
 		this.transactionType = transactionType;
@@ -153,7 +153,7 @@ public class TransactionEntity {
 	/**
 	 * getRemarks
 	 * 
-	 * @return remarks {@link String}
+	 * @return remarks String
 	 */
 	public String getRemarks() {
 		return remarks;
@@ -162,7 +162,7 @@ public class TransactionEntity {
 	/**
 	 * setRemarks
 	 * 
-	 * @param remarks {@link String}
+	 * @param remarks String
 	 */
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
@@ -171,7 +171,7 @@ public class TransactionEntity {
 	/**
 	 * getPhoneNumber
 	 * 
-	 * @return phoneNumber {@link String}
+	 * @return phoneNumber String
 	 */
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -180,7 +180,7 @@ public class TransactionEntity {
 	/**
 	 * setPhoneNumber
 	 * 
-	 * @param phoneNumber {@link String}
+	 * @param phoneNumber String
 	 */
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;

@@ -16,7 +16,7 @@ public interface TransactionRepository extends CrudRepository<TransactionEntity,
 	/**
 	 * findTransactionByAccountID
 	 * 
-	 * @param accountID {@link String}
+	 * @param accountID String
 	 * @return List<Transaction>
 	 */
 	List<TransactionEntity> findTransactionByAccountID(String accountID);

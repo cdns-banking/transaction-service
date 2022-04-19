@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cdns.banking.transaction.model.TransactionEntity;
@@ -20,7 +21,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
  * @version 1.0
  */
 @RestController
+@RequestMapping("/transaction")
 public class TransactionServiceController {
+
 	/**
 	 * transactionService
 	 */
@@ -28,13 +31,13 @@ public class TransactionServiceController {
 	private TransactionService transactionService;
 
 	/**
-	 * payment
+	 * makeTransaction
 	 * 
-	 * @param transaction {@link TransactionEntity}
-	 * @return {@link String}
+	 * @param transaction TransactionEntity
+	 * @return String
 	 */
-	@PostMapping("/transaction")
-	public String transaction(@RequestBody TransactionEntity transaction) {
+	@PostMapping("/maketransaction")
+	public String makeTransaction(@RequestBody TransactionEntity transaction) {
 		String[] result = new String[] { "Payment Failed!", "Internal Server Error!" };
 		try {
 			result = transactionService.performPayment(transaction);
@@ -49,7 +52,7 @@ public class TransactionServiceController {
 	/**
 	 * viewStatement
 	 * 
-	 * @param accountID {@link String}
+	 * @param accountID String
 	 * @return List<Transaction>
 	 */
 	@GetMapping("/statement/{accountID}")

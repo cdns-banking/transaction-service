@@ -5,8 +5,7 @@ package com.cdns.banking.transaction.model;
  * 
  * @version 1.0
  */
-public class Account
-{
+public class Account {
 	/**
 	 * accountID
 	 */
@@ -40,120 +39,108 @@ public class Account
 	/**
 	 * getAccountID
 	 * 
-	 * @return {@link String}
+	 * @return String
 	 */
-	public String getAccountID()
-	{
+	public String getAccountID() {
 		return accountID;
 	}
 
 	/**
 	 * setAccountID
 	 * 
-	 * @param accountID {@link String}
+	 * @param accountID String
 	 */
-	public void setAccountID(String accountID)
-	{
+	public void setAccountID(String accountID) {
 		this.accountID = accountID;
 	}
 
 	/**
 	 * getUserID
 	 * 
-	 * @return userID {@link Integer}
+	 * @return userID Integer
 	 */
-	public String getUserID()
-	{
+	public String getUserID() {
 		return userID;
 	}
 
 	/**
 	 * setUserID
 	 * 
-	 * @param userID {@link Integer}
+	 * @param userID Integer
 	 */
-	public void setUserID(String userID)
-	{
+	public void setUserID(String userID) {
 		this.userID = userID;
 	}
 
 	/**
 	 * getAccountNumber
 	 * 
-	 * @return {@link Integer}
+	 * @return Integer
 	 */
-	public String getAccountNumber()
-	{
+	public String getAccountNumber() {
 		return accountNumber;
 	}
 
 	/**
 	 * setAccountNumber
 	 * 
-	 * @param accountNumber {@link Integer}
+	 * @param accountNumber Integer
 	 */
-	public void setAccountNumber(String accountNumber)
-	{
+	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
 	/**
 	 * getAccountType
 	 * 
-	 * @return accountType {@link Integer}
+	 * @return accountType Integer
 	 */
-	public int getAccountType()
-	{
+	public int getAccountType() {
 		return accountType;
 	}
 
 	/**
 	 * setAccountType
 	 * 
-	 * @param accountType {@link Integer}
+	 * @param accountType Integer
 	 */
-	public void setAccountType(int accountType)
-	{
+	public void setAccountType(int accountType) {
 		this.accountType = accountType;
 	}
 
 	/**
 	 * getBalance
 	 * 
-	 * @return balance {@link Integer}
+	 * @return balance Integer
 	 */
-	public int getBalance()
-	{
+	public int getBalance() {
 		return balance;
 	}
 
 	/**
 	 * setBalance
 	 * 
-	 * @param balance {@link Integer}
+	 * @param balance Integer
 	 */
-	public void setBalance(int balance)
-	{
+	public void setBalance(int balance) {
 		this.balance = balance;
 	}
 
 	/**
 	 * getAccountStatus
 	 * 
-	 * @return accountStatus {@link Integer}
+	 * @return accountStatus Integer
 	 */
-	public String getAccountStatus()
-	{
+	public String getAccountStatus() {
 		return accountStatus;
 	}
 
 	/**
 	 * setAccountStatus
 	 * 
-	 * @param accountStatus {@link Integer}
+	 * @param accountStatus Integer
 	 */
-	public void setAccountStatus(String accountStatus)
-	{
+	public void setAccountStatus(String accountStatus) {
 		this.accountStatus = accountStatus;
 	}
 }
