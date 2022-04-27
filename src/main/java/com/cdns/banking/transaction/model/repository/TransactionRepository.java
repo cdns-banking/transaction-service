@@ -11,13 +11,12 @@ import com.cdns.banking.transaction.model.TransactionEntity;
  * 
  * @version 1.0
  */
-public interface TransactionRepository extends CrudRepository<TransactionEntity, String>
-{
+public interface TransactionRepository extends CrudRepository<TransactionEntity, String> {
 	/**
-	 * findTransactionByAccountID
+	 * findTransactionByAccountNumber
 	 * 
-	 * @param accountID String
+	 * @param accountNumber String
 	 * @return List<Transaction>
 	 */
-	List<TransactionEntity> findTransactionByAccountID(String accountID);
+	List<TransactionEntity> findTransactionByAccountNumber(String accountNumber);
 }

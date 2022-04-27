@@ -31,32 +31,32 @@ public class TransactionServiceController {
 	private TransactionService transactionService;
 
 	/**
+	 * viewTransactions
+	 * 
+	 * @param accountNumber
+	 * @return List<TransactionEntity>
+	 */
+	@GetMapping("/transaction/{accountNumber}")
+	public List<TransactionEntity> viewTransactions(@PathVariable String accountNumber) {
+		return transactionService.getTransactionEntityByAccountNumber(accountNumber);
+	}
+
+	/**
 	 * makeTransaction
 	 * 
 	 * @param transaction TransactionEntity
 	 * @return String
 	 */
-	@PostMapping("/maketransaction")
+	@PostMapping("/transaction")
 	public String makeTransaction(@RequestBody TransactionEntity transaction) {
-		String[] result = new String[] { "Payment Failed!", "Internal Server Error!" };
+		String result = "Transaction Failed!";
 		try {
-			result = transactionService.performPayment(transaction);
+			result = transactionService.performTransaction(transaction);
 		} catch (JsonProcessingException e) {
-			return result[0] + " " + result[1];
+			return result;
 		} catch (JSONException e) {
-			return result[0] + " " + result[1];
+			return result;
 		}
-		return result[0] + " " + result[1];
-	}
-
-	/**
-	 * viewStatement
-	 * 
-	 * @param accountID String
-	 * @return List<Transaction>
-	 */
-	@GetMapping("/statement/{accountID}")
-	public List<TransactionEntity> viewStatement(@PathVariable String accountID) {
-		return transactionService.getTransactionEntityByAccountID(accountID);
+		return result;
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -27,11 +28,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 @Service
 public class TransactionServiceImpl implements TransactionService {
+
 	/**
 	 * transactionRepository
 	 */
 	@Autowired
 	private TransactionRepository transactionRepository;
+
+	/**
+	 * environment
+	 */
+	@Autowired
+	Environment environment;
 
 	/**
 	 * restTemplate
@@ -57,30 +65,27 @@ public class TransactionServiceImpl implements TransactionService {
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @throws JSONException
-	 * @throws JsonProcessingException
 	 */
 	@Transactional
 	@Override
-	public String[] performPayment(TransactionEntity transaction) throws JsonProcessingException, JSONException {
-		String[] result = { "Payment Success.", "" };
+	public String performTransaction(TransactionEntity transaction) throws JsonProcessingException, JSONException {
+		String result = "Transaction Success.";
 
 		// get Account details for source account
-		Account sourceAccount = restTemplate
-				.getForObject("http://account-service/account/id/" + transaction.getAccountID(), Account.class);
+		Account sourceAccount = restTemplate.getForObject(
+				environment.getProperty("base-url.account-service") + "/number/" + transaction.getAccountNumber(),
+				Account.class);
 
 		// get balance for source account,
 		int balance = sourceAccount.getBalance();
 
-		// if low balance, transaction failed.
+		// payment should fail if not enough balance
 		if (balance >= transaction.getAmount()) {
-			// get accountID for phoneNumber
-			String accountIDofDestination = restTemplate
-					.getForObject("http://account-service/account/phone/" + transaction.getPhoneNumber(), String.class);
-			if (null != accountIDofDestination && accountIDofDestination.trim().length() != 0) {
-				// record debit transaction in t_transactions table for source
-				// debitTransaction(transaction);
+			// get accountNumber for the user phoneNumber
+			String accountNumberofDestination = restTemplate.getForObject(
+					environment.getProperty("base-url.account-service") + "/phone/" + transaction.getPhoneNumber(),
+					String.class);
+			if (null != accountNumberofDestination && accountNumberofDestination.trim().length() != 0) {
 
 				sourceAccount.setBalance(sourceAccount.getBalance() - transaction.getAmount());
 
@@ -94,21 +99,20 @@ public class TransactionServiceImpl implements TransactionService {
 				HttpEntity<String> debitRequest = new HttpEntity<String>(debitJsonObject.toString(), headers);
 
 				// update balance of source account
-				restTemplate.postForObject("http://account-service/account/transaction", debitRequest, String.class);
+				restTemplate.postForObject(environment.getProperty("base-url.account-service") + "/transaction",
+						debitRequest, String.class);
 
 				// get Account details for destination account
-				Account destinationAccount = restTemplate
-						.getForObject("http://account-service/account/id/" + accountIDofDestination, Account.class);
+				Account destinationAccount = restTemplate.getForObject(
+						environment.getProperty("base-url.account-service") + "/number/" + accountNumberofDestination,
+						Account.class);
 
 				TransactionEntity creditTransaction = new TransactionEntity();
+				creditTransaction.setAccountNumber(accountNumberofDestination);
+				creditTransaction.setRemarks(accountNumberofDestination + ": " + transaction.getRemarks());
 				creditTransaction.setTransactionDate(transaction.getTransactionDate());
 				creditTransaction.setTransactionType("credit");
-				creditTransaction.setAccountID(accountIDofDestination);
-				creditTransaction.setRemarks(accountIDofDestination + ": " + transaction.getRemarks());
 				creditTransaction.setAmount(transaction.getAmount());
-
-				// record credit transaction in t_transactions table for destination
-				// creditTransaction(creditTransaction);
 
 				List<TransactionEntity> transactionList = new ArrayList<>();
 				transactionList.add(transaction);
@@ -123,10 +127,10 @@ public class TransactionServiceImpl implements TransactionService {
 				// update balance of source account
 				restTemplate.postForObject("http://account-service/account/transaction", creditRequest, String.class);
 			} else {
-				result = new String[] { "Payment Failed!", "Target Account Doesn't Exist!" };
+				result = "Destination Account does not exist!";
 			}
 		} else {
-			result = new String[] { "Payment Failed!", "Not Enough Balance!" };
+			result = "Low Balance to make the transaction!";
 		}
 
 		return result;
@@ -136,8 +140,8 @@ public class TransactionServiceImpl implements TransactionService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<TransactionEntity> getTransactionEntityByAccountID(String accountID) {
-		return transactionRepository.findTransactionByAccountID(accountID);
+	public List<TransactionEntity> getTransactionEntityByAccountNumber(String accountNumber) {
+		return transactionRepository.findTransactionByAccountNumber(accountNumber);
 	}
 
 }

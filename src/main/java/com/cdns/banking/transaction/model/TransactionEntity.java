@@ -29,7 +29,7 @@ public class TransactionEntity {
 	 * accountID
 	 */
 	@Column(name = "account_id", columnDefinition = "uniqueidentifier")
-	private String accountID;
+	private String accountNumber;
 
 	/**
 	 * transactionDate
@@ -79,21 +79,21 @@ public class TransactionEntity {
 	}
 
 	/**
-	 * getAccountID
+	 * getAccountNumber
 	 * 
 	 * @return accountID String
 	 */
-	public String getAccountID() {
-		return accountID;
+	public String getAccountNumber() {
+		return accountNumber;
 	}
 
 	/**
-	 * setAccountID
+	 * setAccountNumber
 	 * 
 	 * @param accountID String
 	 */
-	public void setAccountID(String accountID) {
-		this.accountID = accountID;
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 
 	/**

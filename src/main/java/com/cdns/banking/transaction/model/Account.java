@@ -6,6 +6,7 @@ package com.cdns.banking.transaction.model;
  * @version 1.0
  */
 public class Account {
+
 	/**
 	 * accountID
 	 */
@@ -52,6 +53,24 @@ public class Account {
 	 */
 	public void setAccountID(String accountID) {
 		this.accountID = accountID;
+	}
+
+	/**
+	 * getAccountStatus
+	 * 
+	 * @return accountStatus Integer
+	 */
+	public String getAccountStatus() {
+		return accountStatus;
+	}
+
+	/**
+	 * setAccountStatus
+	 * 
+	 * @param accountStatus Integer
+	 */
+	public void setAccountStatus(String accountStatus) {
+		this.accountStatus = accountStatus;
 	}
 
 	/**
@@ -124,23 +143,5 @@ public class Account {
 	 */
 	public void setBalance(int balance) {
 		this.balance = balance;
-	}
-
-	/**
-	 * getAccountStatus
-	 * 
-	 * @return accountStatus Integer
-	 */
-	public String getAccountStatus() {
-		return accountStatus;
-	}
-
-	/**
-	 * setAccountStatus
-	 * 
-	 * @param accountStatus Integer
-	 */
-	public void setAccountStatus(String accountStatus) {
-		this.accountStatus = accountStatus;
 	}
 }

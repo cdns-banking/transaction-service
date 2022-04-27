@@ -31,20 +31,20 @@ public interface TransactionService {
 	public TransactionEntity balanceCredit(TransactionEntity transaction);
 
 	/**
-	 * performPayment
+	 * performTransaction
 	 * 
 	 * @param transaction TransactionEntity
-	 * @return String[]
+	 * @return String
 	 * @throws JSONException
 	 * @throws JsonProcessingException
 	 */
-	public String[] performPayment(TransactionEntity transaction) throws JsonProcessingException, JSONException;
+	public String performTransaction(TransactionEntity transaction) throws JsonProcessingException, JSONException;
 
 	/**
 	 * getTransactionEntityByAccountID
 	 * 
-	 * @param transaction String
+	 * @param accountNumber String
 	 * @return List<TransactionEntity>
 	 */
-	public List<TransactionEntity> getTransactionEntityByAccountID(String accountID);
+	public List<TransactionEntity> getTransactionEntityByAccountNumber(String accountNumber);
 }

@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
@@ -33,6 +32,18 @@ public class TransactionServiceApplication {
 	}
 
 	/**
+	 * swaggerConfiguration
+	 * 
+	 * @return Docket
+	 */
+	@Bean
+	public Docket swaggerConfiguration() {
+		return new Docket(DocumentationType.SWAGGER_2).select()
+				.apis(RequestHandlerSelectors.basePackage("com.cdns.banking.transaction")).build()
+				.apiInfo(getAPIInfo());
+	}
+
+	/**
 	 * getRestTemplate
 	 * 
 	 * @return RestTemplate
@@ -42,16 +53,14 @@ public class TransactionServiceApplication {
 		return new RestTemplate();
 	}
 
-	@Bean
-	public Docket swaggerConfiguration() {
-		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("com.cdns.banking.transaction")).build()
-				.apiInfo(getAPIInfo());
-	}
-
+	/**
+	 * getAPIInfo
+	 * 
+	 * @return ApiInfo
+	 */
 	private ApiInfo getAPIInfo() {
 		return new ApiInfo("CDNS Banking Transaction Service APIs",
 				"Documentation of APIs provided by the microservice transaction-service", "1.0", "Free to use", null,
 				"API License", null, Collections.emptyList());
 	}
-
 }
